@@ -12,16 +12,14 @@
     <title>WordBoxes</title>
 </head>
 <body>
-<h1>This is the word boxes project</h1>
+<h1>Customers</h1>
 <%--<p>${haha}</p>--%>
-<%--<c:if test="${not empty lists}">--%>
-
-    <%--<ul>--%>
-        <%--<c:forEach var="listValue" items="${lists}">--%>
-            <%--<li>${listValue}</li>--%>
-        <%--</c:forEach>--%>
-    <%--</ul>--%>
-
-<%--</c:if>--%>
+<c:if test="${not empty customers}">
+    <ul>
+        <c:forEach var="customer" items="${customers}">
+            <li>${customer.getFirstName()}</li>
+        </c:forEach>
+    </ul>
+</c:if>
 </body>
 </html>
