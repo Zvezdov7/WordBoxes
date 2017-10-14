@@ -25,13 +25,19 @@ public class MainController {
         return "welcome";
     }
 
-    @GetMapping("/customers")
+    @GetMapping("/")
     public ModelAndView getCustomers(ModelAndView modelAndView) {
         Iterable<Customer> all = repository.findAll();
         modelAndView.addObject("customers", all);
         modelAndView.setViewName("welcome");
         return modelAndView;
 
+    }
+
+    @ResponseBody
+    @GetMapping("/customers")
+    public Iterable<Customer> getCustomers() {
+        return repository.findAll();
     }
 
     @ResponseBody
