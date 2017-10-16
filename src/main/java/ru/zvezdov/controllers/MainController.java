@@ -14,6 +14,7 @@ import ru.zvezdov.model.Customer;
  *         06.10.17.
  */
 @Controller
+@CrossOrigin
 public class MainController {
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
@@ -36,21 +37,18 @@ public class MainController {
 
     @ResponseBody
     @GetMapping("/customers")
-    @CrossOrigin
     public Iterable<Customer> getCustomers() {
         return repository.findAll();
     }
 
     @ResponseBody
     @GetMapping("/customers/{id}")
-    @CrossOrigin
     public Customer getCustomerById(@PathVariable("id") Long id) {
         return repository.findOne(id);
     }
 
     @ResponseBody
     @PostMapping("/customers/")
-    @CrossOrigin
     public Long createCustomer(@RequestBody Customer customer) {
         Customer createdCustomer = repository.save(customer);
         return createdCustomer.getId();
@@ -58,7 +56,6 @@ public class MainController {
 
     @ResponseBody
     @PutMapping("/customers/")
-    @CrossOrigin
     public Customer setCustomer(@RequestBody Customer customer) {
         Customer previousCustomer = repository.findOne(customer.getId());
         repository.save(customer);
@@ -67,7 +64,6 @@ public class MainController {
 
     @ResponseBody
     @DeleteMapping("/customer/{id}")
-    @CrossOrigin
     public Customer deleteCustomer(@PathVariable("id") Long id) {
         Customer customer = repository.findOne(id);
         repository.delete(id);
